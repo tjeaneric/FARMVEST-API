@@ -1,0 +1,17 @@
+*.pyc
+*.swp
+*.swo
+*.swn
+*.swm
+.vscode/
+.idea/
+*.log
+*.dump
+venv/
+
+uploaded/
+media/
+
+__pycache__
+
+env.sh
