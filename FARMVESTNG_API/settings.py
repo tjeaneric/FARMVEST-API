@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from dj_database_url import parse as db_url
 import os
 from decouple import config
 
@@ -80,9 +81,13 @@ WSGI_APPLICATION = "FARMVESTNG_API.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-import dj_database_url
 
-DATABASES = {"default": dj_database_url.config()}
+DATABASES = {
+    "default": config(
+        "DATABASE_URL", default="sqlite:///" + BASE_DIR.child("db.sqlite3"), cast=db_url
+    )
+}
+
 
 DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql_psycopg2"
 
