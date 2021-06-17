@@ -62,7 +62,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Generate [env.sh](#) file** (For windows users, create the file manually):
+**Generate [settings.ini](#) file** (For windows users, create the file manually):
 
 ```bash
 cat settings.ini.example > settings.ini
