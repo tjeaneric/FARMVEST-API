@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "m0!$_wv_z5p$^90ua=mchpllq#-^%tl5_upf#%#u=hd=c+@t56"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = eval(os.getenv("DEBUG"))
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = os.environ["ALLOWED_HOSTS"].split(",")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
@@ -115,7 +115,7 @@ USE_TZ = True
 
 
 # REDIS CONFIGURATIONS FOR CELERY
-BROKER_URL = os.environ["REDIS_URL"]
+BROKER_URL = config("REDIS_URL")
 BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 3600}
 
 
@@ -143,7 +143,7 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', '567'))
 """
 
 # CORS CONFIG
-CORS_ORIGIN_WHITELIST = os.environ["CORS_ORIGIN_WHITELIST"].split(",")
+CORS_ORIGIN_WHITELIST = config("CORS_ORIGIN_WHITELIST").split(",")
 
 # REST FRAMEWORK
 REST_FRAMEWORK = {
@@ -167,22 +167,24 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 
 
-import django_heroku
+USE_HEROKU = config("USE_HEROKU", default=False, cast=bool)
+if USE_HEROKU:
+    import django_heroku
 
-django_heroku.settings(locals())
+    django_heroku.settings(locals())
 
 
 # Store files to s3
-USE_S3_STORAGE = eval(os.getenv("USE_S3_STORAGE", "False"))
+USE_S3_STORAGE = config("USE_S3_STORAGE", default=False, cast=bool)
 
 if USE_S3_STORAGE:
-    AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
-    AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-    AWS_S3_REGION_NAME = os.environ["AWS_S3_REGION_NAME"]
-    AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
+    AWS_S3_REGION_NAME = config("AWS_S3_REGION_NAME")
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
 
