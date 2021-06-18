@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 <!-- Generated with Nexin Django powered API template -->
 
 # FARMVESTNG API
