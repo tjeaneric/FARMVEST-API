@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- Generated with Nexin Django powered API template -->
 
 # FARMVESTNG API
@@ -120,3 +121,6 @@ pre-commit install
 ```bash
 pre-commit run --all-files
 ``` -->
+=======
+# farmvestng-be-pjt-67
+>>>>>>> develop
