@@ -108,24 +108,3 @@ Django applications can be deployed in many ways, and on many different servers.
 > [Ningx/gunicorn/postgresql on ubuntu server](https://rahmonov.me/posts/run-a-django-app-with-gunicorn-in-ubuntu-16-04/)
 
 > [Heroku](https://devcenter.heroku.com/categories/working-with-django)
-
-<!--
-## CONFIGURE [PRE-COMMIT](https://pre-commit.com/)
-
-**Install pre-commit requirements**
-```bash
-pre-commit install
-```
-
-**Run against all the files**
-```bash
-pre-commit run --all-files
-``` -->
-=======
-# farmvestng-be-pjt-67
->>>>>>> develop
-=======
-<h1>farmvestng-be-pjt-67</h1>
-
-
->>>>>>> b6e525c3089d766ed0994ae56bd572f108c97a12
