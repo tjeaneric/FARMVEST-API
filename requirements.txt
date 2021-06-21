@@ -57,6 +57,7 @@ static3==0.7.0
 toml==0.10.2
 typed-ast==1.4.3
 typing-extensions==3.10.0.0
+Unipath==1.1
 urllib3==1.26.5
 vine==5.0.0
 virtualenv==20.4.7
