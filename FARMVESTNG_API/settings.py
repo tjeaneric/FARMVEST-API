@@ -12,11 +12,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 from dj_database_url import parse as db_url
 import os
+from unipath import Path
 from decouple import config
-from pathlib import Path
+
+
+BASE_DIR = Path(__file__).parent
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,6 +30,7 @@ SECRET_KEY = "m0!$_wv_z5p$^90ua=mchpllq#-^%tl5_upf#%#u=hd=c+@t56"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
+
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS",default='127.0.0.1').split(",")
 
@@ -45,7 +49,12 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "django_filters",
     "django_celery_beat",
+
+    # 3rd party
+    'user.app.userConfig',
 ]
+
+AUTH_USER_MODEL = 'User.User'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
