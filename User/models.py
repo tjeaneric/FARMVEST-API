@@ -27,7 +27,7 @@ class User(AbstractUser):
     def States():
 
         states = {
-            'Abia':'ABIA',
+            'ABIA':'ABIA',
             'ABUJA':'ABUJA',
             'ADAMAWA': 'ADAMAWA',
             'AKWA IBOM':'AKWA IBOM',
