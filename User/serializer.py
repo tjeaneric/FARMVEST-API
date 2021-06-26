@@ -15,6 +15,7 @@ class UserSerializer(CountryFieldMixin,serializers.ModelSerializer):
             'email',
             'gender',
             'date_of_birth',
+            'role',
             'bank_name',
             'account_number',
             'country',
