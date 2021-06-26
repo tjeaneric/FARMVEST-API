@@ -80,7 +80,7 @@ class User(AbstractUser):
     bank_name = models.CharField(max_length= 25)
     account_number = models.CharField(max_length=11,null= True)
     country = CountryField()
-    state = models.CharField(max_length=19,default='ABUJA', choices=States(),null=True)
+    state = models.CharField(max_length=19, choices=States(),default='ABUJA',null=True)
     address = models.TextField()
 
 
