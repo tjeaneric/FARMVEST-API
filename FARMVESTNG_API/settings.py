@@ -49,9 +49,12 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "django_filters",
     "django_celery_beat",
+    'phonenumber_field',
+    'django_countries',
 
-    # 3rd party
-    'user.app.userConfig',
+    # local apps
+    'User',
+
 ]
 
 AUTH_USER_MODEL = 'User.User'
