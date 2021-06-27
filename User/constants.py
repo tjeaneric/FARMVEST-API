@@ -25,7 +25,7 @@ def Role():
 
     multi_choice= []
 
-    for choice in Gender:
+    for choice in Role:
         multi_choice.append((choice,Role[choice]))
 
     return tuple(multi_choice)
