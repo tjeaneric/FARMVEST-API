@@ -32,7 +32,7 @@ SECRET_KEY = "m0!$_wv_z5p$^90ua=mchpllq#-^%tl5_upf#%#u=hd=c+@t56"
 DEBUG = config("DEBUG", default=False, cast=bool)
 
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS",default='127.0.0.1').split(",")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1").split(",")
 
 
 # Application definition
@@ -49,15 +49,14 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "django_filters",
     "django_celery_beat",
-    'phonenumber_field',
-    'django_countries',
-
+    "phonenumber_field",
+    "django_countries",
     # local apps
-    'User',
-
+    "User",
+    "farms",
 ]
 
-AUTH_USER_MODEL = 'User.User'
+AUTH_USER_MODEL = "User.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -97,7 +96,7 @@ WSGI_APPLICATION = "FARMVESTNG_API.wsgi.application"
 
 DATABASES = {
     "default": config(
-        "DATABASE_URL",default="sqlite:///" + BASE_DIR.child("db.sqlite3"),cast=db_url
+        "DATABASE_URL", default="sqlite:///" + BASE_DIR.child("db.sqlite3"), cast=db_url
     )
 }
 
