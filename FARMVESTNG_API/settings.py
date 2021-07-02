@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     # local apps
     "User",
     "farms",
+    "transaction",
 ]
 
 AUTH_USER_MODEL = "User.User"
@@ -209,3 +210,4 @@ if USE_S3_STORAGE:
     AWS_LOCATION = "static"
     S3_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     STATIC_URL = S3_URL
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
