@@ -24,7 +24,7 @@ urlpatterns = [
     path("rest-auth/", include("rest_framework.urls")),
     # local apps
     path("api/v1/", include("User.urls")),
-    path("farm/", include("farms.urls")),
+    path("api/v1/", include("farms.urls")),
 ]
 
 if settings.DEBUG:
