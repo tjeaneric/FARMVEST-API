@@ -25,7 +25,7 @@ def Gender():
 
 def Role():
     """
-    Choices of Gender.
+    Choices of Role.
     """
     Role = {"FARMER": "FARMER", "INVESTOR": "INVESTOR"}
 
