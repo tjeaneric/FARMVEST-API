@@ -15,7 +15,6 @@ import os
 from unipath import Path
 from decouple import config
 
-
 BASE_DIR = Path(__file__).parent
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,9 +30,7 @@ SECRET_KEY = "m0!$_wv_z5p$^90ua=mchpllq#-^%tl5_upf#%#u=hd=c+@t56"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1").split(",")
-
 
 # Application definition
 
@@ -89,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "FARMVESTNG_API.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -100,9 +96,7 @@ DATABASES = {
     )
 }
 
-
 DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql_psycopg2"
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -115,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -130,11 +123,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # REDIS CONFIGURATIONS FOR CELERY
 BROKER_URL = config("REDIS_URL")
 BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 3600}
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -166,6 +157,7 @@ CORS_ORIGIN_WHITELIST = config("CORS_ORIGIN_WHITELIST").split(",")
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 20,
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
@@ -177,19 +169,16 @@ REST_FRAMEWORK = {
     ),
 }
 
-
 # Ucomment the next line if you have custom User model
 # AUTH_USER_MODEL = 'app.Model'
 
 AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
-
 
 USE_HEROKU = config("USE_HEROKU", default=False, cast=bool)
 if USE_HEROKU:
     import django_heroku
 
     django_heroku.settings(locals())
-
 
 # Store files to s3
 USE_S3_STORAGE = config("USE_S3_STORAGE", default=False, cast=bool)
