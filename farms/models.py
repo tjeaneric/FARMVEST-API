@@ -29,3 +29,6 @@ class Farm(models.Model):
     thumbnail = models.ImageField(upload_to="category_images", null=True, blank=True)
     description = models.TextField()
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
