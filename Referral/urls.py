@@ -8,3 +8,4 @@ urlpatterns = [
     path('update/<int:pk>/', ReferralUpdateView.as_view(), name='update_Referral'),
     path('delete/<int:pk>/', DeleteReferralView.as_view(), name='Delete_Referral'),
     path('all_Referral/', AllReferral.as_view(), name ='allReferral')
+]
