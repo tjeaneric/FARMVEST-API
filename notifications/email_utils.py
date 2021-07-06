@@ -9,4 +9,4 @@ def send_email(email, message, subject):
     """
     print(f"{message} has been sent to {email}")
 
-    send_mail(subject, message, "FarmvestNG", [email], fail_silently=False)
+    send_mail(subject, message, "ericjohn415@gmail.com", [email], fail_silently=False)
