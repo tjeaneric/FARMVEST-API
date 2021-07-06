@@ -7,6 +7,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from notifications.sms_utils import send_sms
+from notifications.email_utils import send_email
 from .serializer import UserSerializer
 from .models import User, Verification
 from rest_framework.viewsets import ViewSet
@@ -65,18 +66,17 @@ class AuthenticationViewSet(ViewSet):
             verification = Verification(user=user)
             verification.save()
             """
-            send verification.code to user phone number
+            send verification.code to user email
             """
-            phone = request.data.get("phone_number")
+            email = request.data.get("email")
             message = "Your FarmvestNG verification code {code}".format(
                 code=verification.code
             )
-            recipients = [phone]
-            send_sms(phone_numbers=recipients, message=message)
+            subject = "FarmvestNG Verification"
+            send_email(email=email, message=message, subject=subject)
 
             return Response(
-                {"detail": "user created successfully, Verify your phone number"},
-                status=201,
+                {"detail": "user created successfully, Verify your email"}, status=201
             )
 
         return Response({"detail": serializer.errors}, status=400)
