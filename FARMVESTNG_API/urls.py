@@ -25,6 +25,8 @@ urlpatterns = [
     # local apps
     path("api/v1/", include("User.urls")),
     path("api/v1/", include("farms.urls")),
+    path("api/v1/", include("Investment.urls")),
+    path("api/v1/", include("Referral.urls")),
 ]
 
 if settings.DEBUG:
