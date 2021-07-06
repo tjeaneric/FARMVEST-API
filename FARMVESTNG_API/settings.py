@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     # local apps
     "User",
     "farms",
+    "Investment",
+    "Referral"
 ]
 
 AUTH_USER_MODEL = "User.User"
