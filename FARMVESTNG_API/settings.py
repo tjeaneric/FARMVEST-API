@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     # local apps
     "User",
     "farms",
+    "Investment",
+    "Referral"
 ]
 
 AUTH_USER_MODEL = "User.User"
@@ -198,3 +200,14 @@ if USE_S3_STORAGE:
     AWS_LOCATION = "static"
     S3_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
     STATIC_URL = S3_URL
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+DEFAULT_FROM_EMAIL = "ericjohn415@gmail.com"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = (
+    "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"
+)
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
