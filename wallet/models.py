@@ -8,6 +8,8 @@ from User.constants import Role
 # Create your models here.
 class Wallet(models.Model):
     wallet_id= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    wallet_user_id= User()
+    name = models.CharField(max_length=100, default= "wallet name")
     wallet_amount= models.IntegerField()
 
+    def __str__(self):
+        return self.name

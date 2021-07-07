@@ -21,12 +21,14 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("rest-auth/", include("rest_framework.urls")),
+    # path("rest-auth/", include("rest_framework.urls")),
     # local apps
     path("api/v1/", include("User.urls")),
-    path("farm/", include("farms.urls")),
-    path("transaction/", include("transaction.urls")),
-    path("wallet/", include("wallet.urls")),
+    path("api/v1/", include("farms.urls")),
+    path("api/v1/", include("Investment.urls")),
+    path("api/v1/", include("Referral.urls")),
+    path("api/v1/", include("transaction.urls")),
+    path("api/v1/", include("wallet.urls")),
 ]
 
 if settings.DEBUG:
