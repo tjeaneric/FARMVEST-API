@@ -1,37 +1,39 @@
-from rest_framework import generics 
+from rest_framework import generics, mixins
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 from .serializer import InvestmentSerializer
 from .models import Investment
 from django.shortcuts import get_object_or_404
 
-# Create your views here.
 
-
-class InvestmentPostView(generics.CreateAPIView):
-
-    queryset = Investment.objects.all()
+class InvestmentAPIView(
+    generics.GenericAPIView,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.RetrieveModelMixin,
+):
     serializer_class = InvestmentSerializer
-
-class InvestmentGetDetailView(generics.RetrieveAPIView):
-    
     queryset = Investment.objects.all()
-    serializer_class = InvestmentSerializer
 
-class InvestmentUpdateView(generics.RetrieveUpdateAPIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
 
-    queryset = Investment.objects.all()
-    serializer_class = InvestmentSerializer
+    lookup_field = "id"
 
-    # def get_object(self):
-    #     pk = self.kwargs['id']
-        # return get_object_or_404(User, id=id)
+    def get(self, request, id=None):
+        if id:
+            return self.retrieve(request)
+        else:
+            return self.list(request)
 
-class AllInvestment(generics.ListAPIView):
-    
-    queryset = Investment.objects.all()
-    serializer_class = InvestmentSerializer
-    # paginate_by =None
+    def post(self, request):
+        return self.create(request)
 
-class DeleteInvestmentView(generics.DestroyAPIView):
-    
-    queryset = Investment.objects.all()
-    serializer_class = InvestmentSerializer
+    def put(self, request, id=None):
+        return self.update(request, id)
+
+    def delete(self, request, id):
+        return self.destroy(request, id)

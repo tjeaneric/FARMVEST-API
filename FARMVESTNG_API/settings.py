@@ -48,11 +48,12 @@ INSTALLED_APPS = [
     "django_celery_beat",
     "phonenumber_field",
     "django_countries",
+    "drf_yasg",
     # local apps
     "User",
     "farms",
     "Investment",
-    "Referral"
+    "Referral",
 ]
 
 AUTH_USER_MODEL = "User.User"
