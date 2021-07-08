@@ -36,6 +36,9 @@ urlpatterns = [
         schema_view.with_ui("redoc", cache_timeout=0),  # new
         name="schema-redoc",
     ),
+    path("api/v1/", include("transaction.urls")),
+    path("api/v1/", include("wallet.urls")),
+  
 ]
 
 if settings.DEBUG:

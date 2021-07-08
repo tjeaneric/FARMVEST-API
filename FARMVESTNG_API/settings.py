@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     "farms",
     "Investment",
     "Referral",
+    "transaction",
+    "wallet",
+
 ]
 
 AUTH_USER_MODEL = "User.User"
