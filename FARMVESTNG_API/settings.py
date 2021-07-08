@@ -136,7 +136,7 @@ BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 3600}
 STATIC_URL = "/static/"
 MEDIA_ROOT = "uploaded"
 MEDIA_URL = "/media/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
