@@ -1,15 +1,16 @@
-from rest_framework import generics, mixins
-from rest_framework.authentication import SessionAuthentication
+from django.shortcuts import render
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from .serializer import ReferralSerializer
-from .models import Referral
-from django.shortcuts import get_object_or_404
+from .serializer import TransactionSerializer
+from .models import Transaction
+from rest_framework import viewsets, generics, mixins
+
 
 # Create your views here.
 
 
-class ReferralAPIView(
+class TransactionAPIView(
     generics.GenericAPIView,
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
@@ -17,10 +18,11 @@ class ReferralAPIView(
     mixins.DestroyModelMixin,
     mixins.RetrieveModelMixin,
 ):
+    serializer_class = TransactionSerializer
+    queryset = Transaction.objects.all()
 
-    serializer_class = ReferralSerializer
-    queryset = Referral.objects.all()
-
+    # authentication_classes = [SessionAuthentication, BasicAuthentication]
+    # authentication_classes = [TokenAuthentication]
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
 

@@ -26,6 +26,8 @@ urlpatterns = [
     path("api/v1/", include("farms.urls")),
     path("api/v1/", include("Investment.urls")),
     path("api/v1/", include("Referral.urls")),
+    path("api/v1/", include("transaction.urls")),
+    path("api/v1/", include("wallet.urls")),
     path(
         "documentation/",
         schema_view.with_ui("swagger", cache_timeout=0),  # new

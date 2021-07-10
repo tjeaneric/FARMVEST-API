@@ -116,6 +116,9 @@ class AuthenticationViewSet(ViewSet):
     )
     def create_user(self, request):
         data = request.data
+        data["gender"] = data.get("gender").upper()
+        data["role"] = data.get("role").upper()
+        data["state"] = data.get("state").upper()
         context = {"request": request}
         serializer = UserSerializer(data=data, context=context)
         if serializer.is_valid():
