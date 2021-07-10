@@ -9,7 +9,6 @@ from User.constants import Role
 
 # Create your models here.
 class Wallet(models.Model):
-    wallet_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     wallet_amount = models.BigIntegerField()
 
