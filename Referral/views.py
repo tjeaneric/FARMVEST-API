@@ -1,37 +1,42 @@
-from rest_framework import generics 
+from rest_framework import generics, mixins
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 from .serializer import ReferralSerializer
 from .models import Referral
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
-class ReferralPostView(generics.CreateAPIView):
 
-    queryset = Referral.objects.all()
+class ReferralAPIView(
+    generics.GenericAPIView,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.RetrieveModelMixin,
+):
+
     serializer_class = ReferralSerializer
-
-
-class ReferralGetDetailView(generics.RetrieveAPIView):
-    
     queryset = Referral.objects.all()
-    serializer_class = ReferralSerializer
 
-class ReferralUpdateView(generics.RetrieveUpdateAPIView):
+    authentication_classes = [SessionAuthentication]
+    permission_classes = [IsAuthenticated]
 
-    queryset = Referral.objects.all()
-    serializer_class = ReferralSerializer
+    lookup_field = "id"
 
-    # def get_object(self):
-    #     pk = self.kwargs['id']
-        # return get_object_or_404(User, id=id)
+    def get(self, request, id=None):
+        if id:
+            return self.retrieve(request)
+        else:
+            return self.list(request)
 
-class AllReferral(generics.ListAPIView):
-    
-    queryset = Referral.objects.all()
-    serializer_class = ReferralSerializer
-    # paginate_by =None
+    def post(self, request):
+        return self.create(request)
 
-class DeleteReferralView(generics.DestroyAPIView):
-    
-    queryset = Referral.objects.all()
-    serializer_class = ReferralSerializer
+    def put(self, request, id=None):
+        return self.update(request, id)
+
+    def delete(self, request, id):
+        return self.destroy(request, id)
